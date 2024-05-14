@@ -1,6 +1,8 @@
 import '../css/style.css'
 import { Actor, Engine, Vector, DisplayMode } from "excalibur"
 import { Resources, ResourceLoader } from './resources.js'
+import { Dog } from './dog.js'
+import { Bone } from './bone.js'
 
 export class Game extends Engine {
 
@@ -16,11 +18,13 @@ export class Game extends Engine {
 
     startGame() {
         console.log("start de game!")
-        const fish = new Actor()
-        fish.graphics.use(Resources.Fish.toSprite())
-        fish.pos = new Vector(400, 300)
-        fish.vel = new Vector(-10,0)
-        this.add(fish)
+    
+        const dog = new Dog();
+        this.add(dog);
+
+        const bone = new Bone();
+        this.add(bone);
+
     }
 }
 
