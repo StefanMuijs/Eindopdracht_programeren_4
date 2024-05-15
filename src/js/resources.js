@@ -1,9 +1,10 @@
-import { ImageSource, Sound, Resource, Loader } from 'excalibur'
+import { ImageSource, Sound, Resource, Loader, ImageWrapping } from 'excalibur'
 
 // voeg hier jouw eigen resources toe
 const Resources = {
     Dog: new ImageSource('images/dog.png'),
-    Bone: new ImageSource('images/bone.webp')
+    Bone: new ImageSource('images/bone.webp'),
+    Background: new ImageSource('images/level1.png', { wrapping: ImageWrapping.Repeat }),
 }
 
 const ResourceLoader = new Loader()
