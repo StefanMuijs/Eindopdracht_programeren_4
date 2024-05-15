@@ -1,9 +1,11 @@
 import '../css/style.css'
-import { Actor, Engine, Vector, DisplayMode } from "excalibur"
+import { Actor, Engine, Vector, DisplayMode, BoundingBox } from "excalibur"
 import { Resources, ResourceLoader } from './resources.js'
 import { Dog } from './dog.js'
 import { Bone } from './bone.js'
 import { Background } from './background.js'
+import { Player } from './Player.js'
+import { Train } from './train.js'
 
 export class Game extends Engine {
 
@@ -25,15 +27,15 @@ export class Game extends Engine {
         const background = new Background();
         this.add(background);
 
-        const dog = new Dog();
-        this.add(dog);
+        let train = new Train();
+        this.add(train);
 
-        const bone = new Bone();
-        this.add(bone);
+        const player = new Player();
+        this.add(player);
 
 
-        this.currentScene.camera.strategy.lockToActor(dog)
-        this.currentScene.camera.strategy.limitCameraBounds(new BoundingBox(0, 0, 2000, 1200))
+        this.currentScene.camera.strategy.lockToActor(player)
+        this.currentScene.camera.strategy.limitCameraBounds(new BoundingBox(0, 0, 1280, 720))
 
     }
 
