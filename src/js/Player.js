@@ -10,7 +10,7 @@ export class Player extends Actor {
     runRight
 
     constructor() {
-        super()
+        super({ width: 60, height: 140 })
         const runSheet = ex.SpriteSheet.fromImageSource({
             image: Resources.Player,
             grid: { rows: 4, columns: 6, spriteWidth: 150, spriteHeight: 185 }
@@ -21,6 +21,9 @@ export class Player extends Actor {
         this.runRight = ex.Animation.fromSpriteSheet(runSheet, ex.range(1, 10), 80)
         let runLeft = this.runRight.clone();
         runLeft.flipHorizontal = true;
+
+        
+        this.body.collisionType = ex.CollisionType.Active
 
         // this.graphics.add("idle", idle)
         // this.graphics.add("runleft", runLeft)

@@ -14,16 +14,25 @@ export class Background extends Actor {
         this.graphics.use(this.sprite)
     }
 
+    distance = 0
+    distanceTravelled = 0
+
     onPostUpdate(engine, delta) {
         // this.sprite.sourceView.x += .05 * delta;
         if (engine.input.keyboard.isHeld(Keys.D) || engine.input.keyboard.isHeld(Keys.Right)) {
             // this.sprite.vel = new Vector(-100, 0);
             this.sprite.sourceView.x += 0.5 * delta;
+            this.distance += 0.1;
+           
         }
 
         if (engine.input.keyboard.isHeld(Keys.A) || engine.input.keyboard.isHeld(Keys.Right)) {
             this.sprite.sourceView.x -= 0.5 * delta;
+            this.distance -= 0.1;
         }
+
+        this.distanceTravelled = Math.ceil(this.distance);
+        console.log(this.distanceTravelled);
     }
 
 

@@ -8,6 +8,7 @@ const Resources = {
     Background: new ImageSource('images/background.png', { wrapping: ImageWrapping.Repeat }),
     Player: new ImageSource('images/player.png'),
     Train: new ImageSource('images/train.png'),
+    Trashcan: new ImageSource('images/trashcan.png')
 }
 
 const ResourceLoader = new Loader()
