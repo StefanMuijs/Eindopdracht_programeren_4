@@ -1,11 +1,12 @@
-import { Actor, Vector } from "excalibur"
+import { Actor, CollisionType, Vector } from "excalibur"
 import { Resources } from "./resources"
 
 export class Trashcan extends Actor{
     constructor() {
         super({
           width: Resources.Trashcan.width,
-          height: Resources.Trashcan.height
+          height: Resources.Trashcan.height,
+          collisionType: CollisionType.Fixed
         })
       }
 
@@ -14,7 +15,7 @@ export class Trashcan extends Actor{
 
         this.pos = new Vector(
             1180,
-            400);
+            525);
 
         this.graphics.use(Resources.Trashcan.toSprite());
 }

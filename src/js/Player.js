@@ -22,42 +22,54 @@ export class Player extends Actor {
         let runLeft = this.runRight.clone();
         runLeft.flipHorizontal = true;
 
-        
-        this.body.collisionType = ex.CollisionType.Active
 
-        // this.graphics.add("idle", idle)
-        // this.graphics.add("runleft", runLeft)
-        // this.graphics.add("runright", runRight)
+        this.body.collisionType = ex.CollisionType.Active
+        this.body.limitDegreeOfFreedom = [ex.DegreeOfFreedom.Rotation]
 
         this.graphics.use(this.idle)
+
+        this.body.useGravity = true;
+        // this.body.mass = 7
     }
 
 
     onInitialize(engine) {
         this.pos = new Vector(500, 500)
-        this.vel = new Vector(0, 0)
+        // this.vel = new Vector(0, 0)
+        this.on("collisionstart", () => this.groundCheck())
 
     }
+
+    groundCheck(){
+        this.grounded = true;
+    }
+
     onPreUpdate(engine) {
 
         let xspeed = 0
         this.graphics.use(this.idle)
 
         if (engine.input.keyboard.isHeld(Keys.A) || engine.input.keyboard.isHeld(Keys.Left)) {
-            xspeed = -0
+            xspeed = -400
             this.graphics.use(this.runLeft)
 
         }
         if (engine.input.keyboard.isHeld(Keys.D) || engine.input.keyboard.isHeld(Keys.Right)) {
-            xspeed = 0
+            xspeed = 400
             this.graphics.use(this.runRight)
         }
 
-        this.vel = new Vector(xspeed, 0)
-    }
+        this.vel = new Vector(xspeed, this.vel.y)
 
+        // this.grounded = this.pos.y
+        // console.log(this.grounded);
+
+        if (this.grounded) {
+            if (engine.input.keyboard.wasPressed(Keys.Space)) {
+                // this.vel = new Vector(this.vel.x, this.vel.y - 10000)
+                this.body.applyLinearImpulse(new Vector(0, -5000))
+                this.grounded = false
+            }
+        }
+    }
 }
-const runSheet = ex.SpriteSheet.fromImageSource({
-    image: Resources.Player,
-    grid: { rows: 2, columns: 7, spriteWidth: 1047, spriteHeight: 380 }
-})

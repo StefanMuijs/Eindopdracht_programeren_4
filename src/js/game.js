@@ -1,21 +1,26 @@
 import '../css/style.css'
-import { Actor, Engine, Vector, DisplayMode, BoundingBox, Axis } from "excalibur"
+import { Actor, Engine, Vector, DisplayMode, BoundingBox, Axis, SolverStrategy } from "excalibur"
 import { Resources, ResourceLoader } from './resources.js'
-import { Dog } from './dog.js'
-import { Bone } from './bone.js'
 import { Background } from './background.js'
 import { Player } from './Player.js'
 import { Train } from './train.js'
 import { Trashcan } from './trashcan.js'
+import { Barrier } from './barrier.js'
+import { Ground } from './ground.js'
 
 export class Game extends Engine {
+    player
 
     constructor() {
         super({
             width: 1280,
             height: 720,
             maxFps: 60,
-            displayMode: DisplayMode.FitScreen
+            displayMode: DisplayMode.FitScreen,
+            physics: {
+                solver: SolverStrategy.Realistic,
+                gravity: new Vector(0, 800)
+            }
         })
         this.start(ResourceLoader).then(() => this.startGame())
     }
@@ -31,15 +36,22 @@ export class Game extends Engine {
         let train = new Train();
         this.add(train);
 
-        const player = new Player();
-        this.add(player);
+        this.player = new Player();
+    
+        this.add(this.player);
 
+        this.barrier = new Barrier(this);
+        this.add(this.barrier)
+
+        
+        this.ground = new Ground(this);
+        this.add(this.ground)
+
+        const trashcans = [3000, 5000, 7000];
         const trashcan = new Trashcan();
         this.add(trashcan);
 
-        this.currentScene.camera.strategy.lockToActorAxis(player, Axis.X)
-        this.currentScene.camera.strategy.limitCameraBounds(new BoundingBox(0, 0, 1280, 720))
-
+        this.currentScene.camera.strategy.lockToActorAxis(this.player, Axis.X)
     }
 
 }

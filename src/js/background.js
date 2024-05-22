@@ -1,4 +1,4 @@
-import { Actor, Keys, Sprite, Vector, randomInRange } from 'excalibur';
+import { Actor, CollisionType, Keys, Sprite, Vector, randomInRange } from 'excalibur';
 import { Resources } from './resources';
 
 export class Background extends Actor {
@@ -8,32 +8,19 @@ export class Background extends Actor {
     onInitialize(engine) {
         this.sprite = new Sprite({
             image: Resources.Background,
-            // sourceView: { x: 0, y: 0, width: engine.drawWidth, height: engine.drawHeight }
+            sourceView: { x: 0, y: 0, width: engine.drawWidth * 3, height: engine.drawHeight }
         })
         this.anchor = Vector.Zero
         this.graphics.use(this.sprite)
+        this.pos.x = -engine.drawWidth;
+        // this.body.collisionType = CollisionType.PreventCollision;
     }
 
-    distance = 0
-    distanceTravelled = 0
-
-    onPostUpdate(engine, delta) {
-        // this.sprite.sourceView.x += .05 * delta;
-        if (engine.input.keyboard.isHeld(Keys.D) || engine.input.keyboard.isHeld(Keys.Right)) {
-            // this.sprite.vel = new Vector(-100, 0);
-            this.sprite.sourceView.x += 0.5 * delta;
-            this.distance += 0.1;
-           
+    onPostUpdate(engine){
+        if(engine.player.pos.x > this.pos.x + 2 * engine.drawWidth){
+            this.pos.x += engine.drawWidth;
         }
 
-        if (engine.input.keyboard.isHeld(Keys.A) || engine.input.keyboard.isHeld(Keys.Right)) {
-            this.sprite.sourceView.x -= 0.5 * delta;
-            this.distance -= 0.1;
-        }
-
-        this.distanceTravelled = Math.ceil(this.distance);
-        console.log(this.distanceTravelled);
     }
-
 
 }
