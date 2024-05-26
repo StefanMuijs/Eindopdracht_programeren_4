@@ -1,23 +1,22 @@
 import { Actor, CollisionType, Vector } from "excalibur"
 import { Resources } from "./resources"
 
-export class Trashcan extends Actor{
-    constructor() {
-        super({
-          width: Resources.Trashcan.width,
-          height: Resources.Trashcan.height,
-          collisionType: CollisionType.Fixed
-        })
-      }
+export class Trashcan extends Actor {
+  constructor(x) {
+    super({
+      width: Resources.Trashcan.width,
+      height: Resources.Trashcan.height,
+      collisionType: CollisionType.Fixed
+    })
+    this.pos = new Vector(
+      x,
+      525);
+  }
 
-      onInitialize() {
-        console.log("Trashcan created");
+  onInitialize(x) {
+    console.log("Trashcan created");
 
-        this.pos = new Vector(
-            1180,
-            525);
-
-        this.graphics.use(Resources.Trashcan.toSprite());
-}
+    this.graphics.use(Resources.Trashcan.toSprite());
+  }
 
 }

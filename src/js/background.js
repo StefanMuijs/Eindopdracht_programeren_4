@@ -8,7 +8,7 @@ export class Background extends Actor {
     onInitialize(engine) {
         this.sprite = new Sprite({
             image: Resources.Background,
-            sourceView: { x: 0, y: 0, width: engine.drawWidth * 3, height: engine.drawHeight }
+            sourceView: { x: 0, y: 0, width: engine.drawWidth * 5, height: engine.drawHeight }
         })
         this.anchor = Vector.Zero
         this.graphics.use(this.sprite)
@@ -16,11 +16,14 @@ export class Background extends Actor {
         // this.body.collisionType = CollisionType.PreventCollision;
     }
 
-    onPostUpdate(engine){
-        if(engine.player.pos.x > this.pos.x + 2 * engine.drawWidth){
+    onPostUpdate(engine) {
+        if (engine.player.pos.x > this.pos.x + 3 * engine.drawWidth) {
             this.pos.x += engine.drawWidth;
         }
 
+        if (engine.player.pos.x < this.pos.x + 3 * engine.drawWidth) {
+            this.pos.x -= engine.drawWidth;
+        }
     }
 
 }

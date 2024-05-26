@@ -7,9 +7,20 @@ import { Train } from './train.js'
 import { Trashcan } from './trashcan.js'
 import { Barrier } from './barrier.js'
 import { Ground } from './ground.js'
+import { Coin } from './coin.js'
+import { UI } from './ui.js'
 
 export class Game extends Engine {
     player
+    score = 0
+    ui
+
+    addPoint() {
+        this.score++
+        // UI.scoreText.text = `score: ${this.score}`
+        this.ui.updateScore(this.score);
+        console.log(`score: ${this.score}`)
+    }
 
     constructor() {
         super({
@@ -23,6 +34,7 @@ export class Game extends Engine {
             }
         })
         this.start(ResourceLoader).then(() => this.startGame())
+        this.graphics = undefined
     }
 
 
@@ -37,21 +49,34 @@ export class Game extends Engine {
         this.add(train);
 
         this.player = new Player();
-    
+
         this.add(this.player);
+        this.currentScene.camera.strategy.lockToActorAxis(this.player, Axis.X)
 
         this.barrier = new Barrier(this);
         this.add(this.barrier)
 
-        
         this.ground = new Ground(this);
         this.add(this.ground)
 
-        const trashcans = [3000, 5000, 7000];
-        const trashcan = new Trashcan();
-        this.add(trashcan);
+        this.ui = new UI()
+        this.add(this.ui)
 
-        this.currentScene.camera.strategy.lockToActorAxis(this.player, Axis.X)
+        const trashcans = [1180, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000];
+        for (let index = 0; index < trashcans.length; index++) {
+
+            const trashcan = new Trashcan(trashcans[index]);
+            this.add(trashcan);
+        }
+
+        const coins = [1380, 3200, 5200, 7200, 9200, 10200];
+        for (let index = 0; index < trashcans.length; index++) {
+
+            const coin = new Coin(coins[index]);
+            this.add(coin);
+
+        }
+
     }
 
 }
