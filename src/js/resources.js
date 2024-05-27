@@ -9,7 +9,9 @@ const Resources = {
     Train: new ImageSource('images/train.png'),
     Trashcan: new ImageSource('images/trashcan.png'),
     Barrier: new ImageSource('images/barrier.png'),
-    Coin: new ImageSource('images/coin.png')
+    Coin: new ImageSource('images/coin.png'),
+    Bench: new ImageSource('images/bench.png'),
+    Suitcase: new ImageSource('images/suitcase.png')
 }
 
 const ResourceLoader = new Loader()

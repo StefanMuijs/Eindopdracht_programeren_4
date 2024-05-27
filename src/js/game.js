@@ -9,6 +9,9 @@ import { Barrier } from './barrier.js'
 import { Ground } from './ground.js'
 import { Coin } from './coin.js'
 import { UI } from './ui.js'
+import { Bench } from './bench.js'
+import { Suitcase } from './suitcase.js'
+import { Startscreen } from './startscreen.js'
 
 export class Game extends Engine {
     player
@@ -40,6 +43,9 @@ export class Game extends Engine {
 
 
     startGame() {
+        // this.add('startscreen', new Startscreen())
+        // this.goToScene('startscreen')
+        
         console.log("start de game!")
 
         const background = new Background();
@@ -62,20 +68,24 @@ export class Game extends Engine {
         this.ui = new UI()
         this.add(this.ui)
 
-        const trashcans = [1180, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000];
-        for (let index = 0; index < trashcans.length; index++) {
 
-            const trashcan = new Trashcan(trashcans[index]);
-            this.add(trashcan);
-        }
+        const coinsx = [1380, 3500, 5300, 7600, 9200, 10500];
+        const coinsy = [200, 500, 300, 500, 200, 400]
+        for (let index = 0; index < coinsx.length; index++) {
 
-        const coins = [1380, 3200, 5200, 7200, 9200, 10200];
-        for (let index = 0; index < trashcans.length; index++) {
-
-            const coin = new Coin(coins[index]);
+            const coin = new Coin(coinsx[index], coinsy[index]);
             this.add(coin);
 
         }
+
+        const objectsx = [1180, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000];
+        const objects = [Bench, Trashcan, Suitcase,Bench, Trashcan, Suitcase, Bench, Trashcan, Suitcase, Bench, Trashcan, Suitcase, Bench, Trashcan, Suitcase]
+        for (let index = 0; index < objectsx.length; index++) {
+
+            const trashcan = new objects[index](objectsx[index]);
+            this.add(trashcan);
+        }
+
 
     }
 

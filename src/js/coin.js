@@ -2,7 +2,7 @@ import { Actor, CollisionType, Vector } from "excalibur"
 import { Resources } from "./resources"
 
 export class Coin extends Actor {
-    constructor(x) {
+    constructor(x,y) {
         super({
             width: Resources.Coin.width,
             height: Resources.Coin.height,
@@ -11,7 +11,7 @@ export class Coin extends Actor {
 
         this.pos = new Vector(
             x,
-            200);
+            y);
     }
 
     onInitialize(engine) {
