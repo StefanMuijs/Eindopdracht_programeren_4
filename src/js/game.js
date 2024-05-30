@@ -32,10 +32,10 @@ export class Game extends Engine {
 
 
     startGame() {
-    this.add('startscreen', new Startscreen())
-    this.goToScene('startscreen')
+        this.add('startscreen', new Startscreen())
+        this.goToScene('startscreen')
 
-    this.add('Level1', new Level1());
+        this.add('Level1', new Level1());
     }
 
 }
