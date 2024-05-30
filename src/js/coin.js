@@ -1,5 +1,6 @@
 import { Actor, CollisionType, Vector } from "excalibur"
 import { Resources } from "./resources"
+import { Player } from "./Player";
 
 export class Coin extends Actor {
     constructor(x,y) {
@@ -16,8 +17,15 @@ export class Coin extends Actor {
 
     onInitialize(engine) {
         this.graphics.use(Resources.Coin.toSprite());
-        this.on('collisionstart', (event) => this.kill())
-        this.on('collisionstart', (event) => engine.addPoint())
+        this.on('collisionstart', (event) => this.hitSomething(event,))
+    }
+
+    hitSomething(event){
+        if(event.other instanceof Player) {
+        this.scene.addPoint()
+        this.kill()
+        }
+        
     }
 
 }

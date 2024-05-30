@@ -5,31 +5,11 @@ export class Train extends Actor {
 
     onInitialize(engine) {
 
-        // let randomNumber = Math.floor(Math.random() * 3);
-        let randomNumber = 0
+        this.graphics.use(Resources.Train.toSprite())
+        this.vel = new Vector(Math.random() * 400 - 630, 0)
 
-        if (randomNumber === 0) {
-            this.graphics.use(Resources.Train.toSprite())
-            this.vel = new Vector(Math.random() * 400 - 630, 0)
-
-            this.pos = new Vector(3880, 358)
-        }
-
-        if (randomNumber === 1) {
-            this.graphics.use(Resources.Train.toSprite())
-            this.vel = new Vector(Math.random() * 400 - 630, 0)
-
-            this.scale = new Vector(0.6, 0.6)
-            this.pos = new Vector(3880, 312)
-        }
-
-        if (randomNumber === 2) {
-            this.graphics.use(Resources.Train.toSprite())
-            this.vel = new Vector(Math.random() * 400 - 630, 0)
-
-            this.scale = new Vector(0.3, 0.3)
-            this.pos = new Vector(3880, 265)
-        }
+        this.pos = new Vector(3880, 358)
+        console.log(this.vel)
 
     }
 

@@ -2,6 +2,7 @@ import * as ex from "excalibur";
 import { Actor, Keys, SpriteSheet, Vector, randomInRange, range } from 'excalibur';
 import { Resources } from './resources';
 import { vector } from 'excalibur/build/dist/Util/DrawUtil';
+import { Dog } from "./dog";
 
 export class Player extends Actor {
 
@@ -37,6 +38,9 @@ export class Player extends Actor {
         this.pos = new Vector(500, 500)
         // this.vel = new Vector(0, 0)
         this.on("collisionstart", () => this.groundCheck())
+
+        let dog = new Dog()
+        this.addChild(dog);
 
     }
 

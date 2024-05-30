@@ -11,7 +11,10 @@ const Resources = {
     Barrier: new ImageSource('images/barrier.png'),
     Coin: new ImageSource('images/coin.png'),
     Bench: new ImageSource('images/bench.png'),
-    Suitcase: new ImageSource('images/suitcase.png')
+    Suitcase: new ImageSource('images/suitcase.png'),
+    Startscreenbg: new ImageSource('images/startscreen.png'),
+    StartButton: new ImageSource('images/startbutton.png'),
+    Dog: new ImageSource('images/dog.png'),
 }
 
 const ResourceLoader = new Loader()
