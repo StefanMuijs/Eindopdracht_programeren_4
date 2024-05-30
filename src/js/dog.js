@@ -19,24 +19,13 @@ export class Dog extends Actor {
     this.scale = new Vector(0.3, 0.3)
 
     this.pos = new Vector(
-      300,
-      400);
+      -150,
+      20);
 
-
-    this.on('collisionstart', (event) => this.hitSomething(event))
   }
 
   onPostUpdate(engine) {
     let xspeed = 0;
-    let yspeed = 0;
-
-    if (engine.input.keyboard.isHeld(Keys.W) || engine.input.keyboard.isHeld(Keys.Up)) {
-      yspeed = -300;
-    }
-
-    if (engine.input.keyboard.isHeld(Keys.S) || engine.input.keyboard.isHeld(Keys.Down)) {
-      yspeed = 300;
-    }
 
     if (engine.input.keyboard.isHeld(Keys.D) || engine.input.keyboard.isHeld(Keys.Right)) {
       xspeed = 300
@@ -46,8 +35,7 @@ export class Dog extends Actor {
       xspeed = -300
     }
 
-    this.vel = new Vector(xspeed, yspeed);
-    this.graphics.flipHorizontal = (this.vel.x < 0)
+    this.graphics.flipHorizontal = (xspeed < 0)
 
   }
 

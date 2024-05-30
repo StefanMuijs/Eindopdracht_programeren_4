@@ -1,23 +1,11 @@
 import { Actor, CollisionType, Vector } from "excalibur";
 import { Resources } from "./resources";
 import { Trashcan } from "./trashcan";
+import { Obstacle } from "./obstacle";
 
-export class Suitcase extends Actor{
+export class Suitcase extends Obstacle{
     constructor(x) {
         
-        super({
-          width: Resources.Suitcase.width,
-          height: Resources.Suitcase.height,
-          collisionType: CollisionType.Fixed
-        })
-        this.pos = new Vector(
-          x,
-          525);
-      }
-
-    onInitialize(x) {
-        console.log("suitcase created");
-    
-        this.graphics.use(Resources.Suitcase.toSprite());
+        super(x, Resources.Suitcase);
       }
 }

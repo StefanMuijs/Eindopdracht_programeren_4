@@ -20,12 +20,16 @@ export class Ground extends Actor {
   }
 
   onPostUpdate(engine) {
-    if (engine.player.pos.x > this.pos.x + 2 * engine.drawWidth) {
-      this.pos.x += engine.drawWidth;
-    }
+    let playerpos = this.scene?.player?.pos
 
-    if (engine.player.pos.x < this.pos.x + 2 * engine.drawWidth) {
-      this.pos.x -= engine.drawWidth;
+    if(playerpos){
+            if (playerpos.x > this.pos.x + 2 * engine.drawWidth) {
+                this.pos.x += engine.drawWidth;
+            }
+
+            if (playerpos.x < this.pos.x + 2 * engine.drawWidth) {
+                this.pos.x -= engine.drawWidth;
+            }
     }
 
   }

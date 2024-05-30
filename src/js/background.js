@@ -3,6 +3,17 @@ import { Resources } from './resources';
 
 export class Background extends Actor {
 
+    level1
+
+    constructor(){
+        
+        super({
+            z:-2
+        })
+        
+       // this.level1 = scene;
+    }
+
     sprite
 
     onInitialize(engine) {
@@ -13,17 +24,22 @@ export class Background extends Actor {
         this.anchor = Vector.Zero
         this.graphics.use(this.sprite)
         this.pos.x = -engine.drawWidth;
-        // this.body.collisionType = CollisionType.PreventCollision;
     }
 
     onPostUpdate(engine) {
-        if (engine.player.pos.x > this.pos.x + 3 * engine.drawWidth) {
-            this.pos.x += engine.drawWidth;
-        }
+        let playerpos = this.scene?.player?.pos
 
-        if (engine.player.pos.x < this.pos.x + 3 * engine.drawWidth) {
-            this.pos.x -= engine.drawWidth;
+        if(playerpos){
+                if (playerpos.x > this.pos.x + 3 * engine.drawWidth) {
+                    this.pos.x += engine.drawWidth;
+                }
+
+                if (playerpos.x < this.pos.x + 3 * engine.drawWidth) {
+                    this.pos.x -= engine.drawWidth;
+                }
         }
+        
+       
     }
 
 }
