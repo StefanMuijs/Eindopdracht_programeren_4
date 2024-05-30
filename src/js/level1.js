@@ -20,7 +20,7 @@ export class Level1 extends Scene {
     ui
     finished = false;
 
-    
+
     addPoint() {
         this.score++
         // UI.scoreText.text = `score: ${this.score}`
@@ -34,8 +34,8 @@ export class Level1 extends Scene {
         const background = new Background();
         engine.add(background);
 
-        // let train = new Train();
-        // this.add(train);
+        let train = new Train();
+        this.add(train);
 
         this.player = new Player();
         this.add(this.player);
@@ -62,7 +62,7 @@ export class Level1 extends Scene {
         }
 
         const objectsx = [1180, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 11000, 12000, 13000, 14000, 15000, 16000, 17000, 18000];
-        const objects = [Bench, Trashcan, Suitcase,Bench, Trashcan, Suitcase, Bench, Trashcan, Suitcase, Bench, Trashcan, Suitcase, Bench, Trashcan, Suitcase, Bench, Trashcan, Suitcase, Bench, Trashcan, Suitcase, Bench, Trashcan, Suitcase]
+        const objects = [Bench, Trashcan, Suitcase, Bench, Trashcan, Suitcase, Bench, Trashcan, Suitcase, Bench, Trashcan, Suitcase, Bench, Trashcan, Suitcase, Bench, Trashcan, Suitcase, Bench, Trashcan, Suitcase, Bench, Trashcan, Suitcase]
         for (let index = 0; index < objectsx.length; index++) {
 
             const trashcan = new objects[index](objectsx[index]);
@@ -81,13 +81,13 @@ export class Level1 extends Scene {
     }
 
     onPostUpdate() {
-        if(this.score > 9 && !this.finished){
+        if (this.score > 9 && !this.finished) {
             console.log('finishhhh')
             let endtrain = new EndTrain();
             this.add(endtrain);
             this.finished = true;
         }
     }
-    
+
 
 }
