@@ -9,27 +9,27 @@ export class EndTrain extends Actor {
             width: Resources.Train.width,
             height: Resources.Train.height,
             collisionType: CollisionType.Passive,
-            z:-1
+            z: -1
         })
     }
-    
+
     onInitialize(engine) {
         this.graphics.use(Resources.Train.toSprite())
         this.vel = new Vector(300, 0)
 
-        this.pos = new Vector(this.scene?.player?.pos.x + 2800 , 358)
+        this.pos = new Vector(this.scene?.player?.pos.x + 2800, 358)
 
-        
-        this.on('collisionstart', (event) =>  this.hitSomething(event, engine))
+
+        this.on('collisionstart', (event) => this.hitSomething(event, engine))
 
     }
 
-    
-    hitSomething(event, engine){
-        if(event.other instanceof Player) {
-            engine.goToScene('startscreen')
+
+    hitSomething(event, engine) {
+        if (event.other instanceof Player) {
+            engine.goToScene('endscreen')
         }
-     }
+    }
 
     //  if(event.other instanceof Player) {
     //     event.other.actions.moveBy(new Vector(800, 0), 200)
@@ -38,8 +38,8 @@ export class EndTrain extends Actor {
     //             engine.goToScene('startscreen')
     //         }, 5000
     //     )
-        
+
     // }
-   
+
 
 }

@@ -15,6 +15,7 @@ const Resources = {
     Startscreenbg: new ImageSource('images/startscreen.png'),
     StartButton: new ImageSource('images/startbutton.png'),
     Dog: new ImageSource('images/dog.png'),
+    Endscreenbg: new ImageSource('images/endscreen.png'),
 }
 
 const ResourceLoader = new Loader()

@@ -13,6 +13,7 @@ import { Bench } from './bench.js'
 import { Suitcase } from './suitcase.js'
 import { Startscreen } from './startscreen.js'
 import { Level1 } from './level1.js'
+import { Endscreen } from './endscreen.js'
 
 export class Game extends Engine {
     constructor() {
@@ -36,6 +37,7 @@ export class Game extends Engine {
         this.goToScene('startscreen')
 
         this.add('Level1', new Level1());
+        this.add('endscreen', new Endscreen());
     }
 
 }

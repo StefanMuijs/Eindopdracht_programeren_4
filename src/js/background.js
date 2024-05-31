@@ -5,13 +5,13 @@ export class Background extends Actor {
 
     level1
 
-    constructor(){
-        
+    constructor() {
+
         super({
-            z:-2
+            z: -2
         })
-        
-       // this.level1 = scene;
+
+        // this.level1 = scene;
     }
 
     sprite
@@ -29,17 +29,17 @@ export class Background extends Actor {
     onPostUpdate(engine) {
         let playerpos = this.scene?.player?.pos
 
-        if(playerpos){
-                if (playerpos.x > this.pos.x + 3 * engine.drawWidth) {
-                    this.pos.x += engine.drawWidth;
-                }
+        if (playerpos) {
+            if (playerpos.x > this.pos.x + 3 * engine.drawWidth) {
+                this.pos.x += engine.drawWidth;
+            }
 
-                if (playerpos.x < this.pos.x + 3 * engine.drawWidth) {
-                    this.pos.x -= engine.drawWidth;
-                }
+            if (playerpos.x < this.pos.x + 3 * engine.drawWidth) {
+                this.pos.x -= engine.drawWidth;
+            }
         }
-        
-       
+
+
     }
 
 }

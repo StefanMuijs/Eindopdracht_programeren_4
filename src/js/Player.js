@@ -44,7 +44,7 @@ export class Player extends Actor {
 
     }
 
-    groundCheck(){
+    groundCheck() {
         this.grounded = true;
     }
 
@@ -65,12 +65,8 @@ export class Player extends Actor {
 
         this.vel = new Vector(xspeed, this.vel.y)
 
-        // this.grounded = this.pos.y
-        // console.log(this.grounded);
-
         if (this.grounded) {
             if (engine.input.keyboard.wasPressed(Keys.Space)) {
-                // this.vel = new Vector(this.vel.x, this.vel.y - 10000)
                 this.body.applyLinearImpulse(new Vector(0, -5000))
                 this.grounded = false
             }

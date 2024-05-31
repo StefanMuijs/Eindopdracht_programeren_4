@@ -32,7 +32,7 @@ export class Level1 extends Scene {
         console.log("start de game!")
 
         const background = new Background();
-        engine.add(background);
+        this.add(background);
 
         let train = new Train();
         this.add(train);
@@ -42,8 +42,17 @@ export class Level1 extends Scene {
 
         this.camera.strategy.lockToActorAxis(this.player, Axis.X)
 
-        this.barrier = new Barrier(this, 50);
-        this.add(this.barrier)
+        this.barrier1 = new Barrier(this);
+        this.barrier1.pos = new Vector(
+            50,
+            500),
+            this.add(this.barrier1);
+
+        this.barrier2 = new Barrier(this);
+        this.barrier2.pos = new Vector(
+            22000,
+            500),
+            this.add(this.barrier2)
 
         this.ground = new Ground(this);
         this.add(this.ground)
@@ -65,24 +74,14 @@ export class Level1 extends Scene {
         const objects = [Bench, Trashcan, Suitcase, Bench, Trashcan, Suitcase, Bench, Trashcan, Suitcase, Bench, Trashcan, Suitcase, Bench, Trashcan, Suitcase, Bench, Trashcan, Suitcase, Bench, Trashcan, Suitcase, Bench, Trashcan, Suitcase]
         for (let index = 0; index < objectsx.length; index++) {
 
-            const trashcan = new objects[index](objectsx[index]);
-            this.add(trashcan);
+            const obstacle = new objects[index](objectsx[index]);
+            this.add(obstacle);
         }
 
-        // this.barrier = new Barrier(this, 20000);
-        // this.barrier.graphics.flipHorizontal = true;
-        // this.add(this.barrier)
-
-        // if(this.score > 9){
-        //     console.log('finishhhh')
-        //     let endtrain = new EndTrain();
-        //     this.add(endtrain);
-        // }
     }
 
     onPostUpdate() {
         if (this.score > 9 && !this.finished) {
-            console.log('finishhhh')
             let endtrain = new EndTrain();
             this.add(endtrain);
             this.finished = true;
